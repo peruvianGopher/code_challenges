@@ -1,10 +1,10 @@
-const separator = ' '
-const notAllowedChars = new Map()
-notAllowedChars.set(',', true)
-notAllowedChars.set(';', true)
-notAllowedChars.set('.', true)
-notAllowedChars.set('!', true)
-notAllowedChars.set(':', true)
+const SEPARATOR = ' '
+const NOT_ALLOWED_CHARS = new Map()
+NOT_ALLOWED_CHARS.set(',', true)
+NOT_ALLOWED_CHARS.set(';', true)
+NOT_ALLOWED_CHARS.set('.', true)
+NOT_ALLOWED_CHARS.set('!', true)
+NOT_ALLOWED_CHARS.set(':', true)
 
 /**
  * @param {string} p paragraph
@@ -17,8 +17,8 @@ function solution(p) {
     let word = ''
     for (let i = 0; i < p.length; i++) {
         let c = p.charAt(i)
-        if (c !== separator) {
-            if (!notAllowedChars.get(c)) {
+        if (c !== SEPARATOR) {
+            if (!NOT_ALLOWED_CHARS.get(c)) {
                 word += c.toLowerCase()
             }
             continue
