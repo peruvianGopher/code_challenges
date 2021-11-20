@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"regexp"
-	"strings"
+	"unicode"
 )
 
 // Input string, a paragraph
@@ -15,32 +14,32 @@ func main() {
 	fmt.Println(solution(input))
 }
 
-func solution(p string) map[string]int {
-	counter := make(map[string]int)
-	var word string
-	for _, char := range []rune(p+" ") {
-		if char != ' ' {
-			word = word + string(char)
-			continue
-		}
-
-		if word == "" {
-			continue
-		}
-
-		nWord := normalizeWord(word)
-		word = ""
-		counter[nWord]++
-	}
-	return counter
+const separator rune = ' '
+var notAllowedChars = map[rune]bool{
+	',': true,
+	';': true,
+	'.': true,
+	'!': true,
+	':': true,
 }
 
-var normalizedWordsMap = make(map[string]string)
-func normalizeWord(word string) string {
-	if value, ok := normalizedWordsMap[word]; ok {
-		return value
+func solution(p string) map[string]int {
+	counter := make(map[string]int)
+	var word []rune
+	for _, char := range append([]rune(p), separator) {
+		if char != separator {
+			if !notAllowedChars[char] {
+				word = append(word, unicode.ToLower(char))
+			}
+			continue
+		}
+
+		if len(word) == 0 {
+			continue
+		}
+
+		counter[string(word)]++
+		word = []rune{}
 	}
-	re := regexp.MustCompile(`[:,!.]`)
-	normalizedWordsMap[word] = re.ReplaceAllString(strings.ToLower(word), "")
-	return normalizedWordsMap[word]
+	return counter
 }
