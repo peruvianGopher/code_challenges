@@ -30,11 +30,7 @@ func solution(p string) map[string]int {
 
 		nWord := normalizeWord(word)
 		word = ""
-		if count, ok := counter[nWord]; ok {
-			counter[nWord] = count + 1
-			continue
-		}
-		counter[nWord] = 1
+		counter[nWord]++
 	}
 	return counter
 }
