@@ -16,8 +16,7 @@ function solution(s) {
         if (!CLOSE_PAIRS[c]) {
             stack.push(c)
         } else {
-            let last = stack.pop()
-            if (CLOSE_PAIRS[c] !== last) {
+            if (CLOSE_PAIRS[c] !== stack.pop()) {
                 return false
             }
         }

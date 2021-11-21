@@ -39,7 +39,7 @@ func solution(s string) bool {
 		if _, ok := closePair[c]; !ok {
 			stk.push(c)
 		} else {
-			if open := stk.pop(); open != closePair[c] {
+			if stk.pop() != closePair[c] {
 				return false
 			}
 		}
