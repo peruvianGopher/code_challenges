@@ -1,4 +1,4 @@
-# CHALLENGE
+# CHALLENGE 3
 
 Given two nodes A, B, find the common ancestor.
 
