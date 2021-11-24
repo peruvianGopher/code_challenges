@@ -48,7 +48,7 @@ type Traces struct {
 
 func (t *Traces) allCompleted() bool {
 	for _, trace := range t.Data {
-		if trace.PathComplete == false {
+		if !trace.PathComplete {
 			return false
 		}
 	}
