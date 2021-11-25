@@ -21,9 +21,8 @@ func solution(list []int) []int {
                 }
 
                 if list[swapCounter] != 0 {
-                    temp := list[i]
                     list[i] = list[swapCounter]
-                    list[swapCounter] = temp
+                    list[swapCounter] = v
                     break
                 }
                 swapCounter = swapCounter + 1
